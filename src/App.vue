@@ -10,7 +10,7 @@
           v-on:keyup.enter="addTolist"
           class="paperInputs2"
         />
-        <button v-on:click="addTolist" v-bind:class="{disaled: disableButton}">ADD</button>
+        <button v-on:click="addTolist">ADD</button>
         <ul class="flex">
           <li v-for="todo in todos" :key="todo">
             <!-- <label> -->
@@ -23,13 +23,15 @@
             />
             <span>&nbsp;</span>
             <!-- </label> -->
-            <del v-if="todo.done">{{ todo.text }}</del>
-            <span v-else>{{ todo.text }}</span>
+            <div class="test">
+              <del v-if="todo.done">{{ todo.text }}</del>
+              <span v-else>{{ todo.text }}</span>
+            </div>
             <button class="btn-small" v-on:click="removeTolist(todo.id)">Del</button>
           </li>
         </ul>
       </div>
-      <Mine msg="creation of the component" />
+      <Mine msg="Later Additions" />
     </div>
   </div>
 </template>
@@ -43,11 +45,11 @@ export default {
     HelloWorld,
     Mine
   },
-
+  // el: "#app",
 
   data() {
     return {
-      title: "Testing, testing",
+      title: "Vue Todo app, Test",
       disableButton: [{ disableButton: true }],
       todos: [
         { text: "todo 1", done: false, id: 1 },
@@ -58,8 +60,6 @@ export default {
   methods: {
     addTolist(event) {
       var text = event.target.value;
-      text.length > 0;
-      Date.now();
       this.todos.push({ text, done: false, id: [0] });
       text = "";
 
@@ -67,19 +67,22 @@ export default {
     },
     removeTolist(id) {
       this.todos = this.todos.filter(todo => todo.id !== id);
-      console.log("todos.text");
+      console.log(this.todos);
     },
     check(todo) {
       todo.done = !todo.done;
     },
     makeSum() {
-      alert("something");
+      alert("Test complete");
     }
   }
 };
 </script>
 
 <style>
+body {
+  background: aquamarine;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -87,23 +90,8 @@ export default {
   color: #2c3e50;
   margin-top: 250px;
 }
-.long {
-  border-style: solid;
-  border-radius: 20px;
-  border-width: 20px 20px thick;
-  border-bottom-width: 20px;
-  animation: mything 1s alternate linear infinite;
-}
 li {
   list-style: none;
   margin: 8px;
-}
-@keyframes mything {
-  from {
-    border-color: red orange rgb(150, 150, 46) green;
-  }
-  to {
-    border-color: blue indigo violet pink;
-  }
 }
 </style>
