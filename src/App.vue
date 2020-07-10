@@ -5,7 +5,7 @@
         <h1 v-on:click="makeSum">{{title}}</h1>
         <HelloWorld msg="This is my TODO APP" />
         <input
-          type="text"
+          type="tet"
           placeholder="Enter things here"
           v-on:keyup.enter="addTolist"
           class="paperInputs2"
@@ -21,8 +21,9 @@
               :checked="todo.done"
               style="width:30px"
             />
-            <span>&nbsp;</span>
+            <!-- <span>&nbsp;</span> -->
             <!-- </label> -->
+            
             <div class="test">
               <del v-if="todo.done">{{ todo.text }}</del>
               <span v-else>{{ todo.text }}</span>
@@ -31,6 +32,7 @@
           </li>
         </ul>
       </div>
+      <br />
       <Mine msg="Later Additions" />
     </div>
   </div>
@@ -51,15 +53,13 @@ export default {
     return {
       title: "Vue Todo app, Test",
       disableButton: [{ disableButton: true }],
-      todos: [
-        { text: "todo 1", done: false, id: 1 },
-        { text: "todo 2", done: false, id: 2 }
-      ]
+      todos: [{ text: "todo-1", done: false, id: 1 }]
     };
   },
   methods: {
     addTolist(event) {
       var text = event.target.value;
+
       this.todos.push({ text, done: false, id: [0] });
       text = "";
 
@@ -91,7 +91,7 @@ body {
   margin-top: 250px;
 }
 li {
-  list-style: none;
+  list-style-type: none;
   margin: 8px;
 }
 </style>
